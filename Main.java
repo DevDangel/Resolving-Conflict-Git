@@ -17,4 +17,8 @@ public class Main{
             return fibonacci(n - 1) + fibonacci(n - 2);
         }
     }
+
+    public static int sum(int a, int b){
+        return a + b;
+    }
 }

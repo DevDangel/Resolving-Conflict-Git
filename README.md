@@ -1,6 +1,4 @@
 
-
-
 # Resolving Git Conflicts
 
 Understanding how to resolve Git conflicts is essential for any developer working in collaborative environments. Being proficient in version control and Git ensures smooth teamwork, minimizes errors, and helps maintain a clean project history. Proper conflict resolution skills are crucial for effective collaboration and project success.
@@ -20,10 +18,15 @@ Steps:
 3. Save the file and mark it as resolved.
 4. Stage and commit the resolution.
 
+
 ## 2. Using the Command Line (Console)
 The command line allows you to resolve conflicts manually:
 1. Run `git status` to see conflicted files.
-2. Open the file and look for conflict markers:
+2. Use `cat <filename>` to display the contents of the conflicted file and view the conflict markers:
+	```cmd
+	cat Main.java
+	```
+	Look for conflict markers:
 	```
 	<<<<<<< HEAD
 	Your changes
@@ -31,12 +34,29 @@ The command line allows you to resolve conflicts manually:
 	Incoming changes
 	>>>>>>> branch-name
 	```
-3. Edit the file to keep the desired changes and remove the markers.
-4. Save the file, then run:
+
+3. If you want to resolve the conflict by keeping only one side, you can use:
+	 - For the incoming changes (theirs):
+		 ```cmd
+		 git checkout --theirs Main.java
+		 ```
+	 - For your current changes (ours/HEAD):
+		 ```cmd
+		 git checkout --ours Main.java
+		 ```
+	 Then stage and commit:
+	 ```cmd
+	 git add Main.java
+	 git commit -m "Resolved conflict by choosing theirs/ours"
+	 ```
+4. Alternatively, you can manually edit the file to combine both changes as needed, then save and commit as shown above.
+
+
+5. To automatically remove only the conflict markers from the file (leaving all code), you can use:
 	```cmd
-	git add <filename>
-	git commit -m "Resolve conflict"
+	sed -i '/<<<<<<< HEAD/d; /=======/d; />>>>>>> /d' Main.java
 	```
+	This will delete the lines containing conflict markers, but you still need to review the code to ensure it is correct before committing.
 
 
 ## Tips

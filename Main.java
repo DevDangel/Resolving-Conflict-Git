@@ -1,3 +1,12 @@
 public class Main{
     // all code here 
+
+    // need know if one number is pair
+    public static void isPair(int n){
+        if ( n % 2 == 0){
+            System.out.println("The number "+n+" is pair");
+        }else{
+            System.out.println("The number "+n+" is not pair");
+        }
+    }
 }
